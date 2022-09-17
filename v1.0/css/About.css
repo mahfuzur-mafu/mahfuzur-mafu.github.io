@@ -1,0 +1,165 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Sep 8, 2022, 8:43:45 PM
+    Author     : MAHFUZ
+*/
+
+body{
+    font-family: calibari;
+}
+* {
+    margin:0;
+    padding:0;
+    
+}
+ header, footer{
+        position: absolute;
+        background-color: #e84a4a;
+        width:100%;
+        color: white;
+ } 
+  header h2{
+     position: absolute;
+     margin-top: 20px;
+     left: 5%  
+ }
+ header {
+            height: 5vh;
+ }
+ footer{
+                height: 5vh;
+                bottom:0;  
+                
+ }
+ 
+ footer h5{
+     position: absolute;
+     left: 45%;  
+     margin-top: 20px;
+ }
+ .nav{
+     position: absolute;
+     width:100%;
+ }
+ .nav a{
+     position: relative;
+     left :70%;
+     top: 20px;
+     color: white;
+     text-decoration: none;
+     margin-right: 60px;
+ }
+ .body1{
+         height: 35vh;
+         width: 100%;
+         background-color: #809695;
+         
+     
+ }
+ 
+.body1 h5{
+    display: flex;
+      padding: 180px 550px;
+    font-size: 48px;
+    width: 22ch;
+ 
+     
+       
+     
+ }
+ 
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+figcaption {
+
+  color: #e84a4a;
+  text-align: center;
+}
+ 
+
+td{
+     font-size: 20px;
+     
+}
+.wrapper{
+    padding: 50px 680px;
+}
+
+.wrapper .button{
+   
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 100px 10px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #1DA1F2;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icon{
+  background: #333;
+}
+.wrapper .button:nth-child(5):hover .icon{
+  background: #ff0000;
+}
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: #1DA1F2;
+}
+.wrapper .button:nth-child(3) span{
+  color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+  color: #333;
+}
+.wrapper .button:nth-child(5) span{
+  color: black;
+}
