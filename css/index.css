@@ -39,7 +39,7 @@ body {
   border-radius: 24px;
 }
 /* index  */
-.hero-section {
+.home-section {
   background-color: #32585c;
    
   background-position: top;
@@ -51,18 +51,18 @@ body {
   justify-content: center;
   align-items: center;
 }
-.hero-text-container > h1 {
+.home-text-container > h1 {
   color: white;
   font-size: 55px;
   font-weight: 800;
   margin-bottom: 1rem;
 }
-.hero-text-container > h3 {
+.home-text-container > h3 {
   color: white;
   margin-bottom: 2rem;
   font-size: 35px;
 }
-.hero-btn-container .hero-btn-1 {
+.home-btn-container .home-btn-1 {
   background-color: #fff;
   color: #5d5b5d;
   outline: none;
@@ -73,30 +73,19 @@ body {
   border-radius: 24px;
   transition: all 0.35s ease;
 }
-.hero-btn-2 {
-  color: #fff;
-  background-color: #5d5b5d;
-  outline: none;
-  border: none;
-  padding: 8px 18px;
-  margin-right: 1rem;
-  font-weight: 500;
-  border-radius: 24px;
-  transition: all 0.35s ease;
-}
-.hero-btn-1:hover,
-.hero-btn-2:hover {
+
+.home-btn-1:hover {
   color: white;
   background-color: #2c88b3;
 }
 
-.hero-text-container > a {
+.home-text-container > a {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: white;
 }
 
-.hero-text-container > img{
+.home-text-container > img{
      vertical-align: middle;
      width: 180px;
     height: 180px;
@@ -323,11 +312,11 @@ textarea {
 }
 /* MEDIA QUERIES */
 @media (max-width: 565px) {
-  .hero-text-container > h1 {
+  .home-text-container > h1 {
     font-size: 45px;
     text-align: center;
   }
-  .hero-text-container > h3 {
+  .home-text-container > h3 {
     font-size: 25px;
     text-align: center;
   }
