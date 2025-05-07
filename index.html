@@ -15,14 +15,8 @@
 <body>
     <header class="header">
         <h1>Md Mahfuzur Rahman</h1>
-        <p>Data Science Master's Student </p>
-        <div class="social-links">
-            <a href="https://github.com/mahfuzur-mafu" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/mahfuzurmafu/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:mahfuzurmafu@gmail.com">
-                <i class="fas fa-envelope"></i>
-            </a>
-        </div>
+        <p>Data Science Master's Student</p>
+        <div class="social-links" id="social-links"></div>
     </header>
 
     <!-- Experience Section -->
@@ -471,5 +465,31 @@
         }
     });
 </script>
+
+<script>
+    // Array of social link objects
+    const socialLinksData = [
+        { href: "https://github.com/mahfuzur-mafu", icon: "fab fa-github", label: "GitHub" },
+        { href: "https://www.linkedin.com/in/mahfuzurmafu/", icon: "fab fa-linkedin", label: "LinkedIn" },
+        { href: "mailto:mahfuzurmafu@gmail.com", icon: "fas fa-envelope", label: "Email" }
+    ];
+
+    // Function to generate social links dynamically
+    function populateSocialLinks() {
+        const socialLinksContainer = document.getElementById("social-links");
+
+        socialLinksData.forEach(link => {
+            const anchor = document.createElement("a");
+            anchor.href = link.href;
+            anchor.target = "_blank";
+            anchor.innerHTML = `<i class="${link.icon}"></i> ${link.label}`;
+            socialLinksContainer.appendChild(anchor);
+        });
+    }
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", populateSocialLinks);
+</script>
+
 </body>
 </html>
