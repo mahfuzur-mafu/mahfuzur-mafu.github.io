@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Mahfuzur Rahman — ML/DS Researcher & Engineer</title>
+<meta name="description" content="Md Mahfuzur Rahman — M.Sc. Data Science, University of Helsinki. Research assistant working on LLM behavior, retrieval, and attribution. Applying to PhD programs and AI/DS/ML roles.">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   Md Mahfuzur Rahman — Portfolio
+   Theme: "Research Console" — dark lab-notebook aesthetic
+   Type:  Space Grotesk (display) / IBM Plex Sans (body) / IBM Plex Mono (data)
+   ========================================================= */
+
+:root {
+  /* --- color tokens --- */
+  --bg:            #0a0c10;
+  --bg-raised:     #12151b;
+  --bg-raised-2:   #171b22;
+  --border:        #262b33;
+  --border-soft:   #1c2028;
+  --border-strong: #3d4453;   /* used on interactive controls for real visibility */
+
+  --text:          #e8eaed;
+  --text-dim:      #9aa3af;
+  --text-faint:    #5b6472;
+
+  --accent:        #ffb454;   /* phosphor amber — primary signature color */
+  --accent-soft:   #ffb45422;
+  --accent-line:   #ffb45455;
+  --accent-strong: #ffcf8a;
+
+  --syntax-cyan:   #7dd3fc;   /* used sparingly, like IDE syntax color */
+  --syntax-green:  #86efac;   /* status / success dot */
+
+  --nav-bg:    rgba(10,12,16,0.82);
+  --glow-color: rgba(255,180,84,0.14);
+
+  --radius:  10px;
+  --radius-sm: 6px;
+
+  /* --- type tokens --- */
+  --font-display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+  --font-body:    'IBM Plex Sans', -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+
+  --maxw: 1060px;
+}
+
+/* --- light theme overrides --- */
+html[data-theme="light"] {
+  --bg:            #f6f4ee;
+  --bg-raised:     #ffffff;
+  --bg-raised-2:   #efece1;
+  --border:        #dedad0;
+  --border-soft:   #e8e4d8;
+  --border-strong: #b9b2a0;
+
+  --text:          #1c1f26;
+  --text-dim:      #4b5262;
+  --text-faint:    #848c9c;
+
+  --accent:        #c07a1f;
+  --accent-soft:   #c07a1f16;
+  --accent-line:   #c07a1f4d;
+  --accent-strong: #9c630f;
+
+  --syntax-cyan:   #0e7a95;
+  --syntax-green:  #158049;
+
+  --nav-bg:    rgba(246,244,238,0.86);
+  --glow-color: rgba(192,122,31,0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body,
+.topnav, .terminal, .terminal-bar, .cell, .tag, .project-cat,
+.edu-card, .contact-box, .social-row a,
+.nav-links a, .logo, .theme-toggle, .nav-toggle {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* ambient background: faint grid + top vignette */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 0%, transparent 75%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(255,180,84,0.10), transparent 60%);
+  transition: background 0.25s ease;
+}
+html[data-theme="light"] body::before {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+}
+html[data-theme="light"] body::after {
+  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(192,122,31,0.10), transparent 60%);
+}
+
+/* cursor-tracking spotlight — subtle, follows the pointer over the grid */
+#cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(520px circle at var(--x, 50%) var(--y, 18%), var(--glow-color), transparent 72%);
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+::selection { background: var(--accent); color: #10131a; }
+
+/* focus visibility */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   Top nav
+   ========================================================= */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-strong);
+}
+.topnav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.02em;
+}
+.logo .caret { color: var(--accent); }
+.logo .blink-cursor { color: #fff6d8; text-shadow: 0 0 6px rgba(255,214,110,0.65); animation: blink 1.1s step-end infinite; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.nav-links a { color: var(--text-faint); transition: color 0.2s ease; position: relative; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links .idx { color: var(--text-faint); margin-right: 2px; }
+
+.nav-toggle {
+  display: none;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  width: 38px; height: 34px;
+  cursor: pointer;
+}
+.nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--text-dim); margin: 3px auto; }
+
+.theme-toggle {
+  width: 38px; height: 34px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-raised);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.theme-toggle svg { width: 17px; height: 17px; }
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero {
+  padding: 90px 0 70px;
+}
+.hero-grid {
+  display: grid;
+  gap: 42px;
+}
+@media (min-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+  }
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--syntax-green);
+  box-shadow: 0 0 8px var(--syntax-green);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+.hero-role {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-dim);
+  max-width: 60ch;
+  margin-bottom: 30px;
+}
+.hero-role strong { color: var(--text); font-weight: 500; }
+
+.hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 34px; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #14100a;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); transform: translateY(-1px); }
+.btn-ghost { color: var(--text); background: var(--bg-raised); font-weight: 500; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-row a {
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-raised);
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  transition: all 0.2s ease;
+}
+.social-row a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+.social-row svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* terminal card */
+.terminal {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-raised-2);
+}
+.terminal-bar .tdot { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+.terminal-bar .tdot:nth-child(1) { background: #ff5f57; }
+.terminal-bar .tdot:nth-child(2) { background: #febc2e; }
+.terminal-bar .tdot:nth-child(3) { background: #28c840; }
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-left: 6px;
+}
+.terminal-body {
+  padding: 20px 22px 26px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  min-height: 168px;
+}
+.terminal-line { display: flex; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+.terminal-line .prompt { color: var(--syntax-cyan); flex-shrink: 0; }
+.terminal-line .out { color: var(--text-dim); padding-left: 20px; margin-bottom: 14px; }
+.terminal-line .out strong { color: var(--text); font-weight: 500; }
+.typed-cursor {
+  display: inline-block;
+  width: 7px; height: 1em;
+  background: linear-gradient(180deg, #fff9e6, #ffd67a);
+  box-shadow: 0 0 7px rgba(255, 214, 110, 0.7);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================================
+   Notebook cell layout (shared by all sections)
+   ========================================================= */
+.cell {
+  padding: 56px 0;
+  border-top: 1px solid var(--border-soft);
+}
+.cell-inner {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 24px;
+}
+.cell-marker {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  padding-top: 4px;
+  white-space: nowrap;
+}
+.cell-comment {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+  display: block;
+}
+.cell-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* =========================================================
+   About
+   ========================================================= */
+.about-text { max-width: 66ch; color: var(--text-dim); font-size: 1.02rem; }
+.about-text strong { color: var(--text); font-weight: 500; }
+
+/* =========================================================
+   Experience
+   ========================================================= */
+.timeline { position: relative; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px; top: 6px; bottom: 6px;
+  width: 1px;
+  background: linear-gradient(var(--accent-line), var(--border-soft));
+}
+.exp-item { position: relative; padding-left: 34px; margin-bottom: 34px; }
+.exp-item:last-child { margin-bottom: 0; }
+.exp-item::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 6px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+.exp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.exp-item h3 { font-family: var(--font-display); font-size: 1.12rem; font-weight: 600; color: var(--text); }
+.exp-meta { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint); margin-bottom: 12px; }
+.exp-meta span { color: var(--syntax-cyan); }
+.exp-bullets { padding-left: 18px; }
+.exp-bullets li { color: var(--text-dim); margin-bottom: 8px; font-size: 0.95rem; position: relative; padding-left: 4px; }
+.exp-bullets li::marker { color: var(--accent); }
+.exp-desc { color: var(--text-dim); font-size: 0.95rem; }
+
+/* =========================================================
+   Skills
+   ========================================================= */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.skill-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 20px 18px;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.skill-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
+.skill-card h3 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: var(--bg-raised-2);
+}
+
+/* =========================================================
+   Projects
+   ========================================================= */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-raised);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-btn:hover { color: var(--text); border-color: var(--accent); }
+.filter-btn.active { background: var(--accent); color: #14100a; border-color: var(--accent); font-weight: 600; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 980px) {
+  .project-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.project-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: none;
+  flex-direction: column;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.project-card.show { display: flex; }
+.project-card:hover { transform: translateY(-4px); border-color: var(--accent-line); }
+.project-cat {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  background: var(--accent-soft);
+  padding: 3px 9px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.project-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.project-card p { color: var(--text-dim); font-size: 0.9rem; flex-grow: 1; margin-bottom: 14px; }
+.project-tech {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.project-links { display: flex; gap: 10px; }
+.project-links a {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-raised-2);
+  color: var(--text-dim);
+  transition: all 0.2s ease;
+}
+.project-links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.project-links svg { width: 14px; height: 14px; }
+
+/* =========================================================
+   Hackathons / Publications / Education — shared card list
+   ========================================================= */
+.stack-list { display: flex; flex-direction: column; gap: 16px; }
+.info-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.info-card:hover { transform: translateY(-3px); border-color: var(--accent-line); }
+.info-card h3 { font-family: var(--font-display); font-size: 1.08rem; font-weight: 600; margin-bottom: 4px; }
+.info-card .sub { font-family: var(--font-mono); font-size: 0.76rem; color: var(--syntax-cyan); margin-bottom: 10px; display: block; }
+.info-card p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 12px; }
+
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.edu-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+.edu-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+.edu-card .org { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 10px; }
+.edu-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint); display: block; margin-bottom: 3px; }
+.edu-meta.highlight { color: var(--accent); }
+
+/* =========================================================
+   Footer / contact
+   ========================================================= */
+.footer-cell { padding-bottom: 90px; }
+.contact-box {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 34px;
+  text-align: center;
+}
+.contact-box p.lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.contact-box p.sub { color: var(--text-dim); margin-bottom: 26px; }
+.contact-box .hero-cta { justify-content: center; margin-bottom: 0; }
+
+.site-footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 26px 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}
+.site-footer .caret { color: var(--accent); }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    background: var(--bg-raised);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px;
+    gap: 16px;
+  }
+  .cell-inner { grid-template-columns: 1fr; gap: 8px; }
+  .cell-marker { padding-top: 0; }
+  .hero { padding: 60px 0 50px; }
+  .exp-head { flex-direction: column; gap: 2px; }
+}
+
+</style>
+</head>
+<body>
+<div id="cursor-glow" aria-hidden="true"></div>
+
+<!-- ============ Top nav ============ -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#top" class="logo"><span class="caret">&gt;</span> mahfuzur<span class="blink-cursor">_</span></a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+        <a href="#about"><span class="idx">00</span> about</a>
+        <a href="#experience"><span class="idx">01</span> experience</a>
+        <a href="#skills"><span class="idx">02</span> skills</a>
+        <a href="#projects"><span class="idx">03</span> projects</a>
+        <a href="#hackathons"><span class="idx">04</span> hackathons</a>
+        <a href="#publications"><span class="idx">05</span> publications</a>
+        <a href="#education"><span class="idx">06</span> education</a>
+        <a href="#contact"><span class="idx">07</span> contact</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode"></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Helsinki, Finland</div>
+      <h1>Md Mahfuzur Rahman</h1>
+      <p class="hero-role">M.Sc. Data Science candidate and research assistant, building and studying <strong>language models, retrieval systems, and interpretability tools</strong> — currently applying to <strong>PhD programs</strong> and <strong>AI / DS / ML roles</strong>.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+      <div class="social-row" id="social-links"></div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+        <span class="terminal-title">~/mahfuzur — zsh</span>
+      </div>
+      <div class="terminal-body" id="terminal-body"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ About ============ -->
+<section class="cell" id="about">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[0]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># about_me()</span>
+      <h2 class="cell-title">About</h2>
+      <p class="about-text">I'm a graduate researcher in the <strong>Complex Systems Computation (CoSCo)</strong> group at the University of Helsinki, working on language model behavior, training-data attribution, and retrieval-augmented systems. My background spans data engineering, applied machine learning, and interpretability research — and I care about building AI that is transparent, reliable, and well-understood. I'm currently completing my M.Sc. in Data Science and applying to <strong>PhD programs</strong> and <strong>AI / Data Science / ML roles</strong> where I can keep working on that problem.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Experience ============ -->
+<section class="cell" id="experience">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[1]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># experience.timeline()</span>
+      <h2 class="cell-title">Experience</h2>
+      <div class="timeline" id="experience-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Skills ============ -->
+<section class="cell" id="skills">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[2]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># skills.json</span>
+      <h2 class="cell-title">Skills &amp; Expertise</h2>
+      <div class="skills-grid" id="skills-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Projects ============ -->
+<section class="cell" id="projects">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[3]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># projects.filter(category)</span>
+      <h2 class="cell-title">Featured Projects</h2>
+      <div class="filter-row" id="filter-row"></div>
+      <div class="project-grid" id="project-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Hackathons ============ -->
+<section class="cell" id="hackathons">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[4]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># hackathons.log()</span>
+      <h2 class="cell-title">Hackathons</h2>
+      <div class="stack-list" id="hackathon-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Publications ============ -->
+<section class="cell" id="publications">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[5]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># publications.cite()</span>
+      <h2 class="cell-title">Publications</h2>
+      <div class="stack-list" id="publication-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Education ============ -->
+<section class="cell" id="education">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[6]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># education.history()</span>
+      <h2 class="cell-title">Education</h2>
+      <div class="edu-grid" id="education-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="cell footer-cell" id="contact">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[7]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># contact.me()</span>
+      <div class="contact-box">
+        <p class="lead">Let's talk research, roles, or a good dataset.</p>
+        <p class="sub">Open to PhD positions starting Fall 2026, and AI / Data Science / ML roles.</p>
+        <div class="hero-cta">
+          <a href="mailto:mahfuzurmafu@gmail.com" class="btn btn-primary">Email me</a>
+          <a href="https://www.linkedin.com/in/mahfuzurmafu/" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="caret">$</span> echo "© 2026 Md Mahfuzur Rahman — built with curiosity and IBM Plex Mono"
+</footer>
+
+<script>
+/* =========================================================
+   Content data
+   ========================================================= */
+
+const socialLinks = [
+  { href: "https://github.com/mahfuzur-mafu", label: "GitHub", icon: "github" },
+  { href: "https://www.linkedin.com/in/mahfuzurmafu/", label: "LinkedIn", icon: "linkedin" },
+  { href: "https://scholar.google.com/citations?hl=en&authuser=7&user=TaBes-sAAAAJ", label: "Google Scholar", icon: "scholar" },
+  { href: "mailto:mahfuzurmafu@gmail.com", label: "Email", icon: "mail" }
+];
+
+const experience = [
+  {
+    title: "Research Assistant Trainee & Master's Thesis Student",
+    org: "University of Helsinki",
+    duration: "Nov 2025 — June 2026",
+    meta: "Complex Systems Computation (CoSCo) Group · Generation AI Project",
+    bullets: [
+      "Work in the Complex Systems Computation (CoSCo) Group as part of the Generation AI project, focusing on analyzing language model behavior, training data influence, and attribution research.",
+      "Build and maintain end-to-end pipelines for text preprocessing, chunking, embedding generation, and vector database based semantic retrieval.",
+      "Design and run controlled experiments using Hugging Face and local language models to study dataset influence, next-token prediction behavior, and how retrieved context changes model outputs.",
+      "Implement retrieval-augmented generation style prototypes and benchmark both computational performance and qualitative output differences.",
+      "Log and analyze detailed computation metrics such as embedding time, retrieval latency, and generation latency to support reproducible research experiments.",
+      "Develop a prototype ML system with a backend processing pipeline and a lightweight frontend web interface to demonstrate and visualize results for research and educational use.",
+      "Contribute to making AI systems more transparent and explainable, including building tools aimed at improving AI literacy and understanding of data-driven model behavior."
+    ]
+  },
+  {
+    title: "Teaching Assistant",
+    org: "Daffodil International University",
+    duration: "Sep 2020 — Apr 2021",
+    meta: "",
+    desc: "Assisted in teaching Software Project I (CSE136) and Software Project II (CSE216), providing academic support to students across two semesters. Responsibilities included guiding project phases, clarifying course materials, and evaluating assignments."
+  }
+];
+
+const skills = [
+  { title: "Programming Languages", items: ["Python", "JavaScript", "HTML/CSS", "SQL", "C/C++", "Java"] },
+  { title: "Machine Learning & AI", items: ["Scikit-learn", "PyTorch", "TensorFlow", "Keras", "OpenCV", "LangChain", "Hugging Face", "Model Evaluation"] },
+  { title: "Data Processing", items: ["Pandas", "NumPy", "Spark", "SciPy", "Time Series Forecasting", "EDA", "Data Cleaning", "Vector DBs & Embeddings", "Data Wrangling", "Azure Data Lake", "Feature Engineering"] },
+  { title: "Visualization & BI Tools", items: ["Power BI", "Tableau", "Plotly", "Matplotlib", "Seaborn", "Streamlit", "Git", "GitHub", "Kaggle API"] }
+];
+
+const filterLabels = {
+  all: "All",
+  "data-cleaning": "Data Cleaning",
+  eda: "EDA",
+  ts: "Time Series",
+  "ml-model": "ML Models",
+  ai: "AI",
+  dl: "Deep Learning",
+  hci: "HCI",
+  de: "Data Engineering",
+  swe: "Software Engineering"
+};
+
+const projects = [
+  {
+    title: "Radioactivity Measurement Anomaly Detection",
+    category: "ml-model",
+    desc: "An automated anomaly detection system built for STUK (the Radiation and Nuclear Safety Authority of Finland), which collects tens of thousands of environmental samples each year (fish, soil, water, milk, and more) and manually enters radioactivity measurements into a database.",
+    tech: "Python · Hugging Face Datasets · Sentence Transformers · NumPy · Node.js · Express",
+    github: "https://github.com/mahfuzur-mafu/radioactivity-measurement-anomaly-detection"
+  },
+  {
+    title: "Semantic Text Retrieval System",
+    category: "ml-model",
+    desc: "End-to-end semantic retrieval pipeline that loads Hugging Face datasets, chunks text, generates sentence embeddings, and retrieves the most relevant chunks using Euclidean distance and cosine similarity. Includes a lightweight web interface for prompt-based search.",
+    tech: "Python · Hugging Face Datasets · Sentence Transformers · NumPy · Node.js · Express",
+    github: "https://github.com/mahfuzur-mafu/semantic-text-retrieval-system"
+  },
+  {
+    title: "Atmospheric CO₂ Shift Detection & Forecast",
+    category: "ts",
+    desc: "Predictive modeling of 67 years of atmospheric CO₂ using regime-shift detection (STL + PELT) and ensemble forecasting (ARIMA, SARIMA, Holt-Winters, RF, ANN, LSTM), evaluated with in-sample, out-of-sample, and prequential rolling forecasts.",
+    tech: "Python · pandas · statsmodels · scikit-learn · TensorFlow/Keras · ruptures",
+    github: "https://github.com/mahfuzur-mafu/atmosphericCO2-shiftdetection-forecast"
+  },
+  {
+    title: "Sentiment Analysis — Text to Emotions",
+    category: "ml-model",
+    desc: "Interactive sentiment analysis web app that analyzes text polarity and subjectivity using TextBlob, classifying input as positive, negative, or neutral and visualizing sentiment strength with progress bars.",
+    tech: "Python · Streamlit · TextBlob · NLP",
+    github: "https://github.com/mahfuzur-mafu/sentiment-analysis-mapping-text2emotions"
+  },
+  {
+    title: "Financial Fraud Detection Analysis",
+    category: "ml-model",
+    desc: "A machine learning project to identify fraudulent financial transactions from behavioral patterns in transaction data, with a Streamlit app that returns instant fraud predictions from user-entered transaction details.",
+    tech: "Python · Pandas · scikit-learn · joblib · Streamlit",
+    github: "https://github.com/mahfuzur-mafu/Financial-Fraud-Detection-Analysis"
+  },
+  {
+    title: "Customer Segmentation Using ML Clustering",
+    category: "ml-model",
+    desc: "Customer segmentation using unsupervised clustering (KMeans) on demographic and behavioral attributes, helping tailor marketing strategy and optimize resource allocation.",
+    tech: "Python · pandas · scikit-learn · Streamlit",
+    github: "https://github.com/mahfuzur-mafu/Customer-Segmentation-Using-ML-Clustering"
+  },
+  {
+    title: "Customer Churn Prediction",
+    category: "ml-model",
+    desc: "Predicts customer churn from usage and account data to help identify customers likely to leave, enabling proactive retention efforts.",
+    tech: "Python · Pandas · NumPy · Streamlit",
+    github: "https://github.com/mahfuzur-mafu/customer-churn-prediction"
+  },
+  {
+    title: "Car Price Range Estimation App",
+    category: "ml-model",
+    desc: "Estimates a suitable car price range for a customer based on financial inputs such as age, salary, and net worth.",
+    tech: "Pandas · NumPy · Streamlit · scikit-learn",
+    github: "https://github.com/mahfuzur-mafu/car-price-estimator"
+  },
+  {
+    title: "Real Estate Price Prediction",
+    category: "ml-model",
+    desc: "Analyzes real estate data and builds predictive insights on house prices from features such as size, bedroom count, and other key attributes.",
+    tech: "Pandas · NumPy · Streamlit · scikit-learn",
+    github: "https://github.com/mahfuzur-mafu/Real-Estate-Price-Prediction"
+  },
+  {
+    title: "Crops Image Recognition",
+    category: "dl",
+    desc: "Deep learning image classifier for agricultural crops, using ResNet50 as a pretrained feature extractor with a custom classification head for 30 crop types, plus a Streamlit app for live predictions.",
+    tech: "Python · TensorFlow/Keras · ResNet50 · Streamlit",
+    github: "https://github.com/mahfuzur-mafu/crops-image-recognition"
+  },
+  {
+    title: "Interactive Data Visualization",
+    category: "eda",
+    desc: "An interactive Streamlit + Plotly dashboard visualizing global trends in air pollution deaths through dynamic charts, maps, and key metrics, studying how well the prototype supports exploration.",
+    tech: "Python · Plotly · Streamlit · Pandas",
+    github: "https://github.com/mahfuzur-mafu/Interactive-Data-Visualization"
+  },
+  {
+    title: "Fake News Detection",
+    category: "ml-model",
+    desc: "Built an ML model achieving 99.5% accuracy using Decision Tree and Random Forest algorithms to classify news articles as fake or real.",
+    tech: "Python · pandas · scikit-learn · Hadoop · Spark",
+    github: "https://github.com/mahfuzur-mafu/Fake-News-Detection"
+  },
+  {
+    title: "Face Mask Detection System",
+    category: "ml-model",
+    desc: "Real-time face mask detection system achieving 99% accuracy using classical computer vision techniques.",
+    tech: "Python · NumPy · pandas · OpenCV",
+    github: "https://github.com/mahfuzur-mafu/Face-Mask-Detection"
+  },
+  {
+    title: "Credit Card Approval Prediction",
+    category: "ml-model",
+    desc: "Predicts credit card approval outcomes by building and evaluating several classification models to identify the best-performing approach.",
+    tech: "Pandas · NumPy · scikit-learn · Seaborn",
+    github: "https://github.com/mahfuzur-mafu/Credit-Card-Approval-Predictor"
+  },
+  {
+    title: "Netflix Data Cleaning Project",
+    category: "data-cleaning",
+    desc: "Data cleaning and preprocessing pipeline for the Netflix titles dataset — handling missing values, duplicates, and inconsistent formatting to prepare it for downstream analysis.",
+    tech: "Python · pandas · NumPy",
+    github: "https://github.com/mahfuzur-mafu/NetflixData_data_cleaning"
+  },
+  {
+    title: "Deep Learning With PyTorch",
+    category: "dl",
+    desc: "A repository exploring the fundamental building blocks of PyTorch as a deep learning framework, from tensors to training loops.",
+    tech: "PyTorch · NumPy · Matplotlib",
+    github: "https://github.com/mahfuzur-mafu/Deep-Learning-With-PyTorch"
+  },
+  {
+    title: "Airbnb Data Cleaning Project",
+    category: "data-cleaning",
+    desc: "Data cleaning and preprocessing pipeline for an Airbnb listings dataset — handling missing values, duplicates, and inconsistent formatting to prepare it for downstream analysis.",
+    tech: "Python · pandas · NumPy",
+    github: "https://github.com/mahfuzur-mafu/AirbnbData_data_cleaning"
+  },
+  {
+    title: "Walmart Sales Data Analysis using SQL",
+    category: "eda",
+    desc: "End-to-end analysis of Walmart sales data using Python and SQL to extract business insights, aimed at strengthening data manipulation and querying skills.",
+    tech: "Python · pandas · NumPy · PostgreSQL",
+    github: "https://github.com/mahfuzur-mafu/Walmart-Sales-Data-Analysis-using-SQL"
+  },
+  {
+    title: "Online Course Platform",
+    category: "swe",
+    desc: "A web application connecting instructors and students — instructors create and manage courses while students browse, enroll, and interact with course content.",
+    tech: "PHP · HTML · CSS · JavaScript · MySQL",
+    github: "https://github.com/mahfuzur-mafu/online_course_platform_E-CourseV1.1"
+  },
+  {
+    title: "Money Expense Manager",
+    category: "swe",
+    desc: "A CRUD application for tracking personal income and expenses — add, update, view, and delete transactions.",
+    tech: "Dart · Flutter · Hive",
+    github: "https://github.com/mahfuzur-mafu/Money-Manager-v1.0.0"
+  },
+  {
+    title: "Todo App — Spring Boot",
+    category: "swe",
+    desc: "A simple CRUD to-do application built with Spring Boot and Spring JDBC.",
+    tech: "Java · Spring Boot · Spring JDBC · Thymeleaf",
+    github: "https://github.com/mahfuzur-mafu/todo-app-springboot-v1.2"
+  },
+  {
+    title: "JavaQz v1.0",
+    category: "swe",
+    desc: "A web application for taking Java quizzes online and self-verifying knowledge, useful as a mock test before an exam.",
+    tech: "Java · Spring Boot · Spring Data JPA · Thymeleaf",
+    github: "https://github.com/mahfuzur-mafu/JavaQz-v1.0"
+  },
+  {
+    title: "STC-Assist v1.7",
+    category: "swe",
+    desc: "An application to manage organization information, events, and member logins, with role-based access starting from an admin login.",
+    tech: "Java · JSwing · JDBC",
+    github: "https://github.com/mahfuzur-mafu/STC-Assist-v1.7"
+  },
+  {
+    title: "Snake Game v0.9",
+    category: "swe",
+    desc: "A desktop Snake game built as a JavaFX application.",
+    tech: "Java · JavaFX",
+    github: "https://github.com/mahfuzur-mafu/Snake-Game-v-0.9"
+  },
+  {
+    title: "Adventure Works Data Engineering Project",
+    category: "de",
+    desc: "An end-to-end data engineering pipeline built on Azure, ingesting and modeling the Adventure Works dataset into a cloud data lake for analytics.",
+    tech: "Azure · Data Lake",
+    github: "https://github.com/mahfuzur-mafu/Adventure-Works-Data-Engineering-Project"
+  },
+  {
+    title: "Uber Data Engineering Project",
+    category: "de",
+    desc: "A data engineering pipeline for Uber trip data using Mage on Google Cloud Platform, covering ingestion, transformation, and orchestration.",
+    tech: "GCP · Mage",
+    github: "https://github.com/mahfuzur-mafu/Uber-data_Data-Engineering-Project"
+  },
+  {
+    title: "LLM App with Streamlit",
+    category: "ai",
+    desc: "A Streamlit application wrapping an OpenAI LLM with LangChain, providing an interactive interface for experimenting with prompts and responses.",
+    tech: "LangChain · OpenAI · Streamlit",
+    github: "https://github.com/mahfuzur-mafu/LLM-model-with-streamlit-"
+  },
+  {
+    title: "Time Series Data Forecasting",
+    category: "ts",
+    desc: "Forecasting workflows comparing classical statistical models for trend and seasonality analysis on time series data.",
+    tech: "Pandas · statsmodels · pmdarima · Matplotlib",
+    github: "https://github.com/mahfuzur-mafu/Time-Series-Forecasting"
+  },
+  {
+    title: "Eco Scan — HCI Project",
+    category: "hci",
+    desc: "An HCI-focused app prototype exploring how everyday users can scan and understand the environmental footprint of products.",
+    tech: "App Prototype",
+    github: "https://github.com/mahfuzur-mafu/Eco_Scan_HCI_Project"
+  }
+];
+
+const hackathons = [
+  {
+    title: "Junction 2024 — Sustainable Space Data (Aalto University)",
+    sub: "Transforming space data into urban sustainability solutions",
+    desc: "Our project transforms satellite data into actionable insights for urban planners to target emissions, expand green spaces, and cool down cities — empowering data-driven decisions for a more sustainable urban future.",
+    link: "https://eu.junctionplatform.com/projects/junction-2024/view/672e6f7e6afb9482214df271"
+  }
+];
+
+const publications = [
+  {
+    title: "A novel approach to analyzing the impact of AI, ChatGPT, and chatbot on education using machine learning algorithms",
+    sub: "Bulletin of Electrical Engineering and Informatics",
+    desc: "Examines how AI tools such as ChatGPT influence academic work and research support, using machine learning algorithms to analyze their impact on the education sector.",
+    link: "https://beei.org/index.php/EEI/article/view/7158"
+  }
+];
+
+const education = [
+  {
+    degree: "M.Sc. in Data Science",
+    org: "University of Helsinki, Finland",
+    lines: ["Expected Graduation: July 2026", "GPA: 4.32 / 5"],
+    highlight: "Awarded prestigious scholarship (2.4% acceptance rate)"
+  },
+  {
+    degree: "B.Sc. in Computer Science and Engineering",
+    org: "Daffodil International University, Bangladesh",
+    lines: ["GPA: 3.81 / 4.00", "Graduated: March 2024"]
+  }
+];
+
+/* =========================================================
+   Icons (inline SVG, stroke-based to match the console aesthetic)
+   ========================================================= */
+const icons = {
+  github: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>`,
+  linkedin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7.5 10.5v6M7.5 7.5v.01M12 16.5v-3.7c0-1.6 1-2.8 2.5-2.8s2.5 1.1 2.5 2.8v3.7M12 12.8v3.7"/></svg>`,
+  scholar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 2 9l10 6 10-6z"/><path d="M6 11.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></svg>`,
+  mail: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>`,
+  link: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/><path d="M14 10a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></svg>`,
+  sun: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>`,
+  moon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>`
+};
+
+/* =========================================================
+   Render helpers
+   ========================================================= */
+const el = (tag, cls, html) => {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (html !== undefined) node.innerHTML = html;
+  return node;
+};
+
+function renderSocials() {
+  const wrap = document.getElementById("social-links");
+  socialLinks.forEach(s => {
+    const a = el("a", "", `${icons[s.icon]}<span>${s.label}</span>`);
+    a.href = s.href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("aria-label", s.label);
+    wrap.appendChild(a);
+  });
+}
+
+function renderExperience() {
+  const wrap = document.getElementById("experience-list");
+  experience.forEach(item => {
+    const div = el("div", "exp-item");
+    div.innerHTML = `
+      <div class="exp-head"><h3>${item.title}</h3></div>
+      <span class="exp-meta">${item.org}${item.duration ? " · <span>" + item.duration + "</span>" : ""}${item.meta ? " · " + item.meta : ""}</span>
+      ${item.bullets ? `<ul class="exp-bullets">${item.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : `<p class="exp-desc">${item.desc}</p>`}
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function renderSkills() {
+  const wrap = document.getElementById("skills-grid");
+  skills.forEach(cat => {
+    const div = el("div", "skill-card");
+    div.innerHTML = `<h3>${cat.title}</h3><div class="tag-row">${cat.items.map(i => `<span class="tag">${i}</span>`).join("")}</div>`;
+    wrap.appendChild(div);
+  });
+}
+
+function renderFilters() {
+  const wrap = document.getElementById("filter-row");
+  const cats = ["all", ...new Set(projects.map(p => p.category))];
+  cats.forEach((cat, i) => {
+    const btn = el("button", "filter-btn" + (i === 0 ? " active" : ""), filterLabels[cat] || cat);
+    btn.dataset.filter = cat;
+    wrap.appendChild(btn);
+  });
+}
+
+function renderProjects() {
+  const wrap = document.getElementById("project-grid");
+  projects.forEach(p => {
+    const card = el("div", "project-card show");
+    card.dataset.category = p.category;
+    card.innerHTML = `
+      <span class="project-cat">${filterLabels[p.category] || p.category}</span>
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="project-tech">${p.tech}</div>
+      <div class="project-links">
+        <a href="${p.github}" target="_blank" rel="noopener">${icons.github} GitHub</a>
+      </div>
+    `;
+    wrap.appendChild(card);
+  });
+
+  document.getElementById("filter-row").addEventListener("click", e => {
+    const btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const filterValue = btn.dataset.filter;
+    document.querySelectorAll(".project-card").forEach(card => {
+      card.classList.toggle("show", filterValue === "all" || card.dataset.category === filterValue);
+    });
+  });
+}
+
+function renderHackathons() {
+  const wrap = document.getElementById("hackathon-list");
+  hackathons.forEach(h => {
+    const div = el("div", "info-card");
+    div.innerHTML = `
+      <h3>${h.title}</h3>
+      <span class="sub">${h.sub}</span>
+      <p>${h.desc}</p>
+      <div class="project-links"><a href="${h.link}" target="_blank" rel="noopener">${icons.link} View project</a></div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function renderPublications() {
+  const wrap = document.getElementById("publication-list");
+  publications.forEach(p => {
+    const div = el("div", "info-card");
+    div.innerHTML = `
+      <h3>${p.title}</h3>
+      <span class="sub">${p.sub}</span>
+      <p>${p.desc}</p>
+      <div class="project-links"><a href="${p.link}" target="_blank" rel="noopener">${icons.link} Read paper</a></div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function renderEducation() {
+  const wrap = document.getElementById("education-grid");
+  education.forEach(e => {
+    const div = el("div", "edu-card");
+    div.innerHTML = `
+      <h3>${e.degree}</h3>
+      <div class="org">${e.org}</div>
+      ${e.lines.map(l => `<span class="edu-meta">${l}</span>`).join("")}
+      ${e.highlight ? `<span class="edu-meta highlight">${e.highlight}</span>` : ""}
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+/* =========================================================
+   Hero terminal typewriter
+   ========================================================= */
+function typeTerminal() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lines = [
+    { prompt: "whoami", out: "<strong>Md Mahfuzur Rahman</strong>" },
+    { prompt: "role", out: "M.Sc. Data Science @ University of Helsinki &middot; Research Assistant, CoSCo Group" },
+    { prompt: "status --current", out: "Open to <strong>PhD positions (Fall 2026)</strong> and <strong>AI / Data Science / ML roles</strong>" }
+  ];
+  const body = document.getElementById("terminal-body");
+
+  if (reduceMotion) {
+    body.innerHTML = lines.map(l => `
+      <div class="terminal-line"><span class="prompt">$</span><span>${l.prompt}</span></div>
+      <div class="terminal-line out">${l.out}</div>
+    `).join("") + `<div class="terminal-line"><span class="prompt">$</span><span class="typed-cursor"></span></div>`;
+    return;
+  }
+
+  let li = 0;
+  function typeLine() {
+    if (li >= lines.length) {
+      const finalLine = el("div", "terminal-line");
+      finalLine.innerHTML = `<span class="prompt">$</span><span class="typed-cursor"></span>`;
+      body.appendChild(finalLine);
+      return;
+    }
+    const line = lines[li];
+    const promptDiv = el("div", "terminal-line");
+    const promptSpan = el("span", "prompt", "$");
+    const textSpan = el("span", "", "");
+    promptDiv.appendChild(promptSpan);
+    promptDiv.appendChild(textSpan);
+    body.appendChild(promptDiv);
+
+    let ci = 0;
+    const text = line.prompt;
+    const iv = setInterval(() => {
+      textSpan.textContent = text.slice(0, ci + 1);
+      ci++;
+      if (ci >= text.length) {
+        clearInterval(iv);
+        const outDiv = el("div", "terminal-line out", line.out);
+        body.appendChild(outDiv);
+        li++;
+        setTimeout(typeLine, 220);
+      }
+    }, 32);
+  }
+  typeLine();
+}
+
+/* =========================================================
+   Scroll reveal + mobile nav
+   ========================================================= */
+function initReveal() {
+  const targets = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach(t => t.classList.add("in"));
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  targets.forEach(t => io.observe(t));
+}
+
+function initMobileNav() {
+  const toggle = document.getElementById("nav-toggle");
+  const links = document.getElementById("nav-links");
+  toggle.addEventListener("click", () => links.classList.toggle("open"));
+  links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => links.classList.remove("open")));
+}
+
+/* =========================================================
+   Theme toggle (dark / light)
+   ========================================================= */
+function getStoredTheme() {
+  try { return localStorage.getItem("theme"); } catch (e) { return null; }
+}
+function storeTheme(value) {
+  try { localStorage.setItem("theme", value); } catch (e) { /* ignore, e.g. sandboxed preview */ }
+}
+
+function initTheme() {
+  const root = document.documentElement;
+  const btn = document.getElementById("theme-toggle");
+
+  function apply(theme) {
+    root.setAttribute("data-theme", theme);
+    btn.innerHTML = theme === "light" ? icons.moon : icons.sun;
+    btn.setAttribute("aria-label", theme === "light" ? "Switch to dark mode" : "Switch to light mode");
+  }
+
+  // theme was already set pre-paint by the inline head script; just sync the icon
+  apply(root.getAttribute("data-theme") || "dark");
+
+  btn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    apply(next);
+    storeTheme(next);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderSocials();
+  renderExperience();
+  renderSkills();
+  renderFilters();
+  renderProjects();
+  renderHackathons();
+  renderPublications();
+  renderEducation();
+  typeTerminal();
+  initReveal();
+  initMobileNav();
+  initTheme();
+  initCursorGlow();
+});
+
+/* =========================================================
+   Cursor-following ambient glow (desktop, motion-ok only)
+   ========================================================= */
+function initCursorGlow() {
+  const glow = document.getElementById("cursor-glow");
+  if (!glow) return;
+
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!canHover || reduceMotion) { glow.style.display = "none"; return; }
+
+  let raf = null;
+  window.addEventListener("pointermove", e => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      glow.style.setProperty("--x", e.clientX + "px");
+      glow.style.setProperty("--y", e.clientY + "px");
+      raf = null;
+    });
+  }, { passive: true });
+}
+
+</script>
+</body>
+</html>

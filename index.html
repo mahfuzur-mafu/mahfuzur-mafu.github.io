@@ -1,616 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Mahfuzur Rahman - Research Assistant</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Mahfuzur Rahman — ML/DS Researcher & Engineer</title>
+<meta name="description" content="Md Mahfuzur Rahman — M.Sc. Data Science, University of Helsinki. Research assistant working on LLM behavior, retrieval, and attribution. Applying to PhD programs and AI/DS/ML roles.">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
 
-        <!-- Font Awesome CDN -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
- 
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <h1>Md Mahfuzur Rahman</h1>
-        <p>M.Sc. in Data Science and Research Assistant, University of Helsinki </p>
-        <div class="social-links" id="social-links"></div>
-    </header>
+<div id="cursor-glow" aria-hidden="true"></div>
 
-    <!-- Experience Section -->
-<section class="section experience">
-    <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="experience-timeline">
-            <!-- Left Experience -->
-            <div class="experience-item left">
-                <div class="experience-content">
-                    <h3>Research Assistant Trainee & Master's Thesis Student | University of Helsinki</h3>
-                    <p><strong>Duration:</strong> Nov 2025 - June 2026</p>
-                    <p><strong>Research Group:</strong> Complex Systems Computation (CoSCo)</p>
-                    <p><strong>Project:</strong> Generation AI</p>
-            
-                    <ul class="experience-bullets">
-                        <li>Work in the Complex Systems Computation (CoSCo) Group as part of the Generation AI project, focusing on analyzing language model behavior, training data influence, and attribution research.</li>
-                        <li>Build and maintain end to end pipelines for text preprocessing, chunking, embedding generation, and vector database based semantic retrieval.</li>
-                        <li>Design and run controlled experiments using Hugging Face and local language models to study dataset influence, next token prediction behavior, and how retrieved context changes model outputs.</li>
-                        <li>Implement retrieval augmented generation style prototypes and benchmark both computational performance and qualitative output differences.</li>
-                        <li>Log and analyze detailed computation metrics such as embedding time, retrieval latency, and generation latency to support reproducible research experiments.</li>
-                        <li>Develop a prototype ML system with a backend processing pipeline and a lightweight frontend web interface to demonstrate and visualize results for research and educational use.</li>
-                        <li>Contribute to making AI systems more transparent and explainable, including building tools aimed at improving AI literacy and understanding of data driven model behavior.</li>
-                    </ul>
-                </div>
-            </div>
-            
-
-        </div>
-        <div class="experience-timeline">
-            <!-- Left Experience -->
-            <div class="experience-item left">
-                <div class="experience-content">
-                    <h3>Teaching Assistant | Daffodil International University</h3>
-                    <p><strong>Duration:</strong> Sep 2020 - Apr 2021</p>
-                    <p>Assisted in teaching Software Project I, CSE136, and Software Project II CSE216 courses, providing academic support to students during two semester. Responsibilities included guiding project phases, clarifying course materials, and evaluating assignments.</p>
-                </div>
-            </div>
-
-        </div>
+<!-- ============ Top nav ============ -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#top" class="logo"><span class="caret">&gt;</span> mahfuzur<span class="blink-cursor">_</span></a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+        <a href="#about"><span class="idx">00</span> about</a>
+        <a href="#experience"><span class="idx">01</span> experience</a>
+        <a href="#skills"><span class="idx">02</span> skills</a>
+        <a href="#projects"><span class="idx">03</span> projects</a>
+        <a href="#hackathons"><span class="idx">04</span> hackathons</a>
+        <a href="#publications"><span class="idx">05</span> publications</a>
+        <a href="#education"><span class="idx">06</span> education</a>
+        <a href="#contact"><span class="idx">07</span> contact</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode"></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Helsinki, Finland</div>
+      <h1>Md Mahfuzur Rahman</h1>
+      <p class="hero-role">M.Sc. Data Science candidate and research assistant, building and studying <strong>language models, retrieval systems, and interpretability tools</strong> — currently applying to <strong>PhD programs</strong> and <strong>AI / DS / ML roles</strong>.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+      <div class="social-row" id="social-links"></div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+        <span class="terminal-title">~/mahfuzur — zsh</span>
+      </div>
+      <div class="terminal-body" id="terminal-body"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ About ============ -->
+<section class="cell" id="about">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[0]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># about_me()</span>
+      <h2 class="cell-title">About</h2>
+      <p class="about-text">I'm a graduate researcher in the <strong>Complex Systems Computation (CoSCo)</strong> group at the University of Helsinki, working on language model behavior, training-data attribution, and retrieval-augmented systems. My background spans data engineering, applied machine learning, and interpretability research — and I care about building AI that is transparent, reliable, and well-understood. I'm currently completing my M.Sc. in Data Science and applying to <strong>PhD programs</strong> and <strong>AI / Data Science / ML roles</strong> where I can keep working on that problem.</p>
+    </div>
+  </div>
 </section>
 
+<!-- ============ Experience ============ -->
+<section class="cell" id="experience">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[1]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># experience.timeline()</span>
+      <h2 class="cell-title">Experience</h2>
+      <div class="timeline" id="experience-list"></div>
+    </div>
+  </div>
+</section>
 
-<section class="section skills">
-    <div class="container">
-      <h2 class="section-title">Skills & Expertise</h2>
-      <div class="skill-grid">
-        
-        <div class="skill-category">
-          <h3>Programming Languages</h3>
-          <p>Python, JavaScript, HTML/CSS, SQL, C/C++ , Java</p>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Machine Learning & AI</h3>
-          <p>
-            Scikit-learn, PyTorch, TensorFlow, Keras, OpenCV, LangChain, Hugging Face, Model Evaluation.
-          </p>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Data Processing</h3>
-          <p>
-            Pandas, NumPy, Spark, Scipy, Time Series Forecasting, EDA, Data Cleaning, Vector Databases & Embeddings, Data Wrangling, Azure Data Lake, Feature Engineering.
-          </p>
-        </div>
-  
-        <div class="skill-category">
-          <h3>Visualization & Software /BI Tools</h3>
-          <p>
-            Power BI, Tableau, Plotly, Matplotlib, Seaborn, Streamlit, Git, GitHub, Kaggle API.
-          </p>
-        </div>
+<!-- ============ Skills ============ -->
+<section class="cell" id="skills">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[2]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># skills.json</span>
+      <h2 class="cell-title">Skills &amp; Expertise</h2>
+      <div class="skills-grid" id="skills-grid"></div>
+    </div>
+  </div>
+</section>
 
-  
+<!-- ============ Projects ============ -->
+<section class="cell" id="projects">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[3]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># projects.filter(category)</span>
+      <h2 class="cell-title">Featured Projects</h2>
+      <div class="filter-row" id="filter-row"></div>
+      <div class="project-grid" id="project-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Hackathons ============ -->
+<section class="cell" id="hackathons">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[4]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># hackathons.log()</span>
+      <h2 class="cell-title">Hackathons</h2>
+      <div class="stack-list" id="hackathon-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Publications ============ -->
+<section class="cell" id="publications">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[5]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># publications.cite()</span>
+      <h2 class="cell-title">Publications</h2>
+      <div class="stack-list" id="publication-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Education ============ -->
+<section class="cell" id="education">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[6]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># education.history()</span>
+      <h2 class="cell-title">Education</h2>
+      <div class="edu-grid" id="education-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="cell footer-cell" id="contact">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[7]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># contact.me()</span>
+      <div class="contact-box">
+        <p class="lead">Let's talk research, roles, or a good dataset.</p>
+        <p class="sub">Open to PhD positions starting Fall 2026, and AI / Data Science / ML roles.</p>
+        <div class="hero-cta">
+          <a href="mailto:mahfuzurmafu@gmail.com" class="btn btn-primary">Email me</a>
+          <a href="https://www.linkedin.com/in/mahfuzurmafu/" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn</a>
+        </div>
       </div>
     </div>
-  </section>
-  
-  
-
-
-    <section class="section projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="data-cleaning">Data Cleaning</button>
-                <button class="filter-btn" data-filter="eda">EDA</button>
-                <button class="filter-btn" data-filter="ts">Time Series</button>
-                <button class="filter-btn" data-filter="ml-model">ML Models</button>
-                <button class="filter-btn" data-filter="ai">Artificial intelligence</button>
-                <button class="filter-btn" data-filter="dl">Deep Learning</button>
-                <button class="filter-btn" data-filter="hci">HCI</button>
-                <button class="filter-btn" data-filter="de">Data Engineering</button>
-                <button class="filter-btn" data-filter="swe">Software Engineering</button>
-            </div>
-            <div class="project-grid">
-                <!-- Data Cleaning Projects -->
-
-
-                <div class="project-card show" data-category="ml-model">
-                    <h3>radioactivity-measurement-anomaly-detection</h3>
-                    <p>
-                        An automated anomaly detection system built for STUK (the Radiation and Nuclear Safety Authority of Finland), which collects tens of thousands of environmental samples each year (fish, soil, water, milk, and more) and manually enters radioactivity measurements into a database.
-                      <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, Hugging Face Datasets, Sentence Transformers, NumPy, Node.js, Express, HTML, CSS, JavaScript
-                      </div>
-                      <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/radioactivity-measurement-anomaly-detection" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                      </div>
-                    </div>
-
-                
-                    <div class="project-card show" data-category="ml-model">
-                        <h3>Semantic Text Retrieval System</h3>
-                        <p>
-                            End to end semantic retrieval pipeline that loads Hugging Face datasets, chunks text, generates sentence embeddings, and retrieves the most relevant chunks using Euclidean distance and cosine similarity. Includes a lightweight web interface for prompt based search, suitable for semantic search, recommendation, and content discovery.
-                          </p>
-                          <div class="tech-stack">
-                            <strong>Tech Stack:</strong> Python, Hugging Face Datasets, Sentence Transformers, NumPy, Node.js, Express, HTML, CSS, JavaScript
-                          </div>
-                          <div class="project-links">
-                            <a href="https://github.com/mahfuzur-mafu/semantic-text-retrieval-system" target="_blank" class="btn">GitHub</a>
-                            <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                          </div>
-                        </div>
-
-                
-
-                <div class="project-card show" data-category="ml-model">
-                    <h3>atmosphericCO2-shiftdetection-forecast</h3>
-                    <p>Predictive modeling of 67 years of atmospheric CO₂ using regime‐shift detection (STL + PELT) and ensemble forecasting (ARIMA, SARIMA, Holt–Winters, RF, ANN, LSTM). Evaluated with in-sample, out-of-sample, and prequential rolling forecasts to deliver reliable five-year projections with regime shift.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, pandas, NumPy, Matplotlib, statsmodels, scikit-learn, TensorFlow/Keras, ruptures
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/atmosphericCO2-shiftdetection-forecast" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="ml-model">
-                    <h3>sentiment-analysis-mapping-text2emotions</h3>
-                        <p>
-                          Interactive sentiment analysis web application that analyzes text polarity and subjectivity using TextBlob. The app classifies input text as positive, negative, or neutral and visualizes sentiment strength with intuitive progress bars, enabling quick insights into emotional tone.
-                        </p>
-                        <div class="tech-stack">
-                          <strong>Tech Stack:</strong> Python, Streamlit, TextBlob, NLP, HTML/CSS
-                        </div>
-                        <div class="project-links">
-                          <a href="https://github.com/mahfuzur-mafu/sentiment-analysis-mapping-text2emotions" target="_blank" class="btn">GitHub</a>
-                          <a href="https://your-demo-link.com" target="_blank" class="btn">Demo</a>
-                        </div>
-                      </div>
-                      
-                
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Financial-Fraud-Detection-Analysis</h3>
-                    <p>Financial-Fraud-Detection-Analysis is a machine learning project designed to identify fraudulent financial transactions using key behavioral patterns in transaction data. It includes comprehensive data preprocessing, model training using scikit-learn, and a Streamlit web app that allows users to input transaction details and receive instant fraud predictions.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong>  Python, Pandas, NumPy, scikit-learn, joblib, Matplotlib, Seaborn, Streamlit
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Financial-Fraud-Detection-Analysis" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Customer Segmentation Using ML Clustering</h3>
-                    <p>This project implements customer segmentation using unsupervised machine learning clustering techniques, specifically KMeans, to group customers based on demographic and behavioral attributes. The segmented clusters help businesses tailor marketing strategies, improve customer engagement, and optimize resource allocation.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Streamlit
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Customer-Segmentation-Using-ML-Clustering" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Customer Churn Prediction</h3>
-                    <p>This project leverages machine learning to predict customer churn by analyzing customer data. The goal is to identify customers likely to discontinue services, enabling businesses to take proactive measures to improve customer retention.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, Pandas, NumPy ,Streamlit,Matplotlib
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/customer-churn-prediction" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-            
-                <!-- EDA Projects -->
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Car Price Range Estimation App</h3>
-                    <p>This project is designed to estimate a car price range suitable for customers based on their financial information. By inputting details such as age, salary, and net worth, the app calculates and advises a car price range tailored to the customer.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Pandas, NumPy, Streamlit, Matplotlib, Seaborn, Scikit-learn
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/car-price-estimator" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-            
-                <!-- Time Series Projects -->
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Real Estate Price Prediction</h3>
-                    <p>This project focuses on analyzing real estate data and building predictive insights on house prices. The dataset contains features such as house size, number of bedrooms, and other key attributes.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Pandas, NumPy, Streamlit, Matplotlib, Seaborn, Scikit-learn
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Real-Estate-Price-Prediction" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="dl">
-                    <h3>Crops Image Recognition
-                    </h3>
-                    <p> This project utilizes deep learning to classify images of various agricultural crops. It leverages the ResNet50 architecture as a pre-trained feature extractor and builds a custom classifier on top to identify 30 different crop types. Additionally, a Streamlit-based web application allows users to upload images and receive crop predictions.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, TensorFlow/Keras, ResNet50, ImageDataGenerator, splitfolders, Streamlit, NumPy, Pandas, Matplotlib
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/crops-image-recognition" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-                <div class="project-card show" data-category="eda">
-                    <h3>Interactive Data Visualization
-                    </h3>
-                    <p> This projects presents  an interactive dashboard built using Streamlit and Plotly. The application is designed to visualize global trends in air pollution death through a series of dynamic charts, maps, and key metrics. By analyzing how well the current prototype communicates significant insights and supports user exploration, this study guides the next iteration of the design.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, Plotly, Streamlit, NumPy, Pandas, Matplotlib.
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Interactive-Data-Visualization" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-            
-                <!-- ML Model Projects -->
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Fake News Detection</h3>
-                    <p>Built ML model achieving 99.5% accuracy using Decision Tree and Random Forest algorithms.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, pandas, matplotlib, Scikit-learn, Hadoop, Spark
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Fake-News-Detection" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-            
-                <!-- Prediction System Projects -->
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Face Mask Detection System</h3>
-                    <p>Real-time mask detection system with 99% accuracy using OpenCV.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Python, numpy, pandas, OpenCV.
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Face-Mask-Detection" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-            
-                <!-- ML Model Projects (Additional Example) -->
-                <div class="project-card show" data-category="ml-model">
-                    <h3>Credit Card Approval Prediction</h3>
-                    <p>This project aims to predict credit card approval using machine learning techniques. The goal is to build and evaluate various classification models to identify the best-performing model for accurate prediction.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn 
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Credit-Card-Approval-Predictor" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="data-cleaning">
-                    <h3>Netflix_data Data Cleaning Project</h3>
-                    <p>This project aims to predict credit card approval using machine learning techniques. The goal is to build and evaluate various classification models to identify the best-performing model for accurate prediction.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> python, panads, numpy,
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/NetflixData_data_cleaning" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="dl">
-                    <h3>Deep Learning With PyTorch
-                    </h3>
-                    <p>This repository explores the fundamental concepts of PyTorch, a powerful deep learning framework. </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Pytorch, Numpy, matplotlib
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Deep-Learning-With-PyTorch" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="data-cleaning">
-                    <h3>Airbnb_data Data Cleaning Project</h3>
-                    <p>This project aims to predict credit card approval using machine learning techniques. The goal is to build and evaluate various classification models to identify the best-performing model for accurate prediction.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> python, panads, numpy,
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/AirbnbData_data_cleaning" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="eda">
-                    <h3>Walmart Sales Data Analysis using SQL</h3>
-                    <p>This project provides an end-to-end data analysis solution for Walmart sales data. Using Python and SQL, it extracts critical business insights by solving key analytical problems. This repository is ideal for data analysts aiming to enhance their skills in data manipulation, SQL querying, and exploratory data analysis.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> python, panads, numpy, postgres
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Walmart-Sales-Data-Analysis-using-SQL" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="swe">
-                    <h3>Online Course Platform</h3>
-                    <p>TThe Online Course Platform is a web-based application designed to facilitate learning for students from junior to university levels. The platform connects instructors and students, enabling instructors to create and manage courses while allowing students to browse, enroll, and interact with the content. </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Php, Html,CSS, JS, Mysql
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/online_course_platform_E-CourseV1.1" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="swe">
-                    <h3>Money Expense Manager </h3>
-                    <p>Money Expense Manager is an application that allows a user to easily keep track of how much money he/she has and how much he/she has spent. It will be a CRUD application, a user can create or add his income and expenses, user can update his expense, view, and delete the expenses. </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Dart, flutter, Hive
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Money-Manager-v1.0.0" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="swe">
-                    <h3>todo-app-springboot</h3>
-                    <p>CRUD Simple Todo Application. Spring Boot and Spring JDBC.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Java, HTML, CSS, Bootstrap, Thymeleaf, Spring Boot, Spring JDBC.
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/todo-app-springboot-v1.2" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="swe">
-                    <h3>JavaQz v1.0</h3>
-                    <p>web application through which a user can take a quiz on Java online and verify himself. It will work as like a mock test before a test.</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Java, HTML, CSS, Bootstrap, Thymeleaf, Spring Boot, and Spring Data JPA
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/JavaQz-v1.0" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="swe">
-                    <h3>STC-Assist v1.7</h3>
-                    <p>This application is basically handle all the work of an organization. Where all the information of the organization will be given, social link will be given. Its next day's event and all its events will be shown. There will also be login option, the first admin login where the admin will login with his code. People registered by admin can login using other login options. Here will be the introduction of the members of the organization.
-
-                    </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Java, Jswing, JDBC
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/STC-Assist-v1.7" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-                <div class="project-card show" data-category="swe">
-                    <h3>Snake Game v 0.9</h3>
-                    <p> A Desktop Application Snake game with JavaFX</p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Java, JavaFX
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Snake-Game-v-0.9" target="_blank" class="btn">GitHub</a>
-                        <a href="https://your-blog-link.com" target="_blank" class="btn">Blog</a>
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="de">
-                    <h3>Adventure-Works-Data-Engineering-Project</h3>
-                    <p> </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Azure, Data lake
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Adventure-Works-Data-Engineering-Project" target="_blank" class="btn">GitHub</a>
-        
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="de">
-                    <h3>Uber-data_Data-Engineering-Project</h3>
-                    <p> </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> GCP, Mage
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Uber-data_Data-Engineering-Project" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="ai">
-                    <h3>LLM model with streamlit</h3>
-                    <p> </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> langchain, OpenAI,streamlit
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/LLM-model-with-streamlit-" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-
-                <div class="project-card show" data-category="ts">
-                    <h3>Time Series Data Forecasting</h3>
-                    <p> </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> Pandas, matplotlib, statsmodel, pmdarima
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Time-Series-Forecasting" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-                <div class="project-card show" data-category="hci">
-                    <h3>Eco Scan HCI Project</h3>
-                    <p> </p>
-                    <div class="tech-stack">
-                        <strong>Tech Stack:</strong> App Prototype
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mahfuzur-mafu/Eco_Scan_HCI_Project" target="_blank" class="btn">GitHub</a>
-    
-                    </div>
-                </div>
-
-           
-            </div>
-            
-        </div>
-    </section>
-
-    <section class="section hackathons">
-    <div class="container">
-        <h2 class="section-title">Hackathons</h2>
-        <div class="hackathon-item">
-            <h3>Junction 2024</h3>
-            <h3>Sustainable Space Data By Aalto University</h3>
-            <p>Transforming Space Data Data into Urban Sustainability Solutions. Our project transforms satellite data into actionable insights for urban planners to target emissions, expand green spaces, and cool down cities. It empowers data-driven decisions for a more sustainable urban future.</p>
-            <div class="project-links">
-                <a href="https://eu.junctionplatform.com/projects/junction-2024/view/672e6f7e6afb9482214df271" target="_blank" class="btn">GitHub</a>
-                <a href="https://eu.junctionplatform.com/projects/junction-2024/view/672e6f7e6afb9482214df271" target="_blank" class="btn">Blog</a>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- Publications Section -->
-<section class="section publications">
-    <div class="container">
-        <h2 class="section-title">Publications</h2>
-        <div class="publication-item">
-            <h3>A novel approach to analyzing the impact of AI, ChatGPT, and chatbot on education using machine learning algorithms</h3>
-            <p><strong>Published in:</strong> Bulletin of Electrical Engineering and Informatics</p>
-            <p>Artificial intelligence (AI) is one of the most common and essential technologies in this modern era, especially in the education and research sectors. It mimics machine-processed human intellect. In modern times, ChatGPT is one of the most effective and beneficial tools developed by OpenAI. Provides prompt answers and feedback to help academics and researchers........</p>
-            <div class="project-links">
-                <a href="https://beei.org/index.php/EEI/article/view/7158" target="_blank" class="btn">Read</a>
-            </div>
-        </div>
+<footer class="site-footer">
+  <span class="caret">$</span> echo "© 2026 Md Mahfuzur Rahman — built with curiosity and IBM Plex Mono"
+</footer>
 
-    </div>
-</section>
-
-    <section class="section education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-item">
-                <h3>M.Sc. in Data Science</h3>
-                <p>University of Helsinki, Finland</p>
-                <p>Expected Graduation: July 2026</p>
-                <p>GPA: 4.32/5</p>
-                <p>Awarded prestigious scholarship (2.4% acceptance rate)</p>
-            </div>
-            <div class="education-item">
-                <h3>B.Sc. in Computer Science and Engineering</h3>
-                <p>Daffodil International University, Bangladesh</p>
-                <p>GPA: 3.81/4.00</p>
-                <p>Graduated: Mar 2024</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>© 2025 Md Mahfuzur Rahman</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
-                    button.classList.add('active');
-
-                    const filterValue = button.getAttribute('data-filter');
-
-                    projectCards.forEach(card => {
-                        if (filterValue === 'all') {
-                            card.classList.add('show');
-                        } else {
-                            if (card.getAttribute('data-category') === filterValue) {
-                                card.classList.add('show');
-                            } else {
-                                card.classList.remove('show');
-                            }
-                        }
-                    });
-                });
-            });
-        });
-    </script>
-
-<script>
-    // Particles.js configuration (if needed)
-    particlesJS('particles-js', {
-        particles: {
-            number: { value: 80 },
-            color: { value: '#00B9FF' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.5 },
-            size: { value: 3 },
-            line_linked: {
-                enable: true,
-                color: '#00B9FF',
-                opacity: 0.4
-            },
-            move: {
-                enable: true,
-                speed: 3
-            }
-        }
-    });
-</script>
-
-<script>
-    // Array of social link objects
-    const socialLinksData = [
-        { href: "https://github.com/mahfuzur-mafu", icon: "fab fa-github", label: "GitHub" },
-        { href: "https://www.linkedin.com/in/mahfuzurmafu/", icon: "fab fa-linkedin", label: "LinkedIn" },
-        { href: "https://scholar.google.com/citations?hl=en&authuser=7&user=TaBes-sAAAAJ", icon: "fab fa-google", label: "Google Scholar" },
-        { href: "mailto:mahfuzurmafu@gmail.com", icon: "fas fa-envelope", label: "Email" }
-    ];
-
-    // Function to generate social links dynamically
-    function populateSocialLinks() {
-        const socialLinksContainer = document.getElementById("social-links");
-
-        socialLinksData.forEach(link => {
-            const anchor = document.createElement("a");
-            anchor.href = link.href;
-            anchor.target = "_blank";
-            anchor.innerHTML = `<i class="${link.icon}"></i> ${link.label}`;
-            socialLinksContainer.appendChild(anchor);
-        });
-    }
-
-    // Call the function when the page loads
-    document.addEventListener("DOMContentLoaded", populateSocialLinks);
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
