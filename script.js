@@ -494,8 +494,8 @@ function typeTerminal() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lines = [
     { prompt: "whoami", out: "<strong>Md Mahfuzur Rahman</strong>" },
-    { prompt: "role", out: "M.Sc. Data Science @ University of Helsinki &middot; Research Assistant, CoSCo Group" },
-    { prompt: "status --current", out: "Open to <strong>PhD positions (Fall 2026)</strong> and <strong>AI / Data Science / ML roles</strong>" }
+    { prompt: "role", out: "M.Sc. in <strong>Data Science</strong> from the <strong>University of Helsinki</strong> with research and engineering experience in <strong>Large Language Models (LLMs)</strong>, <strong>Embedding-Based Retrieval</strong>, <strong>Semantic Search</strong>, <strong>Vector Databases</strong>, and <strong>Explainable AI (XAI)</strong>. Experienced in building <strong>end-to-end NLP pipelines</strong>, <strong>scalable retrieval systems</strong>, and <strong>machine learning solutions</strong>." },
+    { prompt: "status --current", out: "Open to <strong>AI</strong>, <strong>Machine Learning</strong>, <strong>Data Science</strong>, and <strong>Research</strong> opportunities." }
   ];
   const body = document.getElementById("terminal-body");
   const terminalEl = document.querySelector(".terminal");
