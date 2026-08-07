@@ -313,7 +313,9 @@ a:focus-visible, button:focus-visible {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  transition: border-color 0.25s ease;
 }
+.terminal:hover { border-color: var(--accent-line); }
 .terminal-bar {
   display: flex;
   align-items: center;
@@ -431,33 +433,86 @@ a:focus-visible, button:focus-visible {
 /* =========================================================
    Skills
    ========================================================= */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.skills-grid { display: flex; flex-direction: column; gap: 30px; }
 .skill-card {
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 20px 18px;
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-soft);
+  transition: border-color 0.25s ease;
 }
-.skill-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
+.skill-card:last-child { padding-bottom: 0; border-bottom: none; }
 .skill-card h3 {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-faint);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
-.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.tag {
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tech-card {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 5px 10px;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 76px;
+  gap: 7px;
+  padding: 10px 6px;
+  border-radius: 9px;
   border: 1px solid var(--border);
-  color: var(--text-dim);
   background: var(--bg-raised-2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  text-align: center;
 }
+.tech-badge {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f1e8;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.22);
+  transition: width 0.3s ease, height 0.3s ease;
+  flex-shrink: 0;
+}
+.tech-badge img { width: 19px; height: 19px; object-fit: contain; }
+.tech-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%; height: 100%;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #2c2f36;
+  letter-spacing: -0.02em;
+}
+.tech-label {
+  font-size: 0.66rem;
+  color: var(--text-dim);
+  line-height: 1.25;
+  transition: color 0.3s ease;
+}
+
+/* grows on mouse hover (and keyboard focus) — not on click */
+.tech-card:hover,
+.tech-card:focus-visible {
+  transform: scale(1.28);
+  z-index: 6;
+  border-color: var(--accent);
+  background: var(--bg-raised);
+  box-shadow: 0 18px 40px -12px rgba(0,0,0,0.5), 0 0 0 3px var(--accent-soft);
+  outline: none;
+}
+.tech-card:hover .tech-badge,
+.tech-card:focus-visible .tech-badge { width: 42px; height: 42px; }
+.tech-card:hover .tech-badge img,
+.tech-card:focus-visible .tech-badge img { width: 23px; height: 23px; }
+.tech-card:hover .tech-label,
+.tech-card:focus-visible .tech-label { color: var(--text); font-weight: 600; }
 
 /* =========================================================
    Projects

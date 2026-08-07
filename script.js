@@ -41,6 +41,51 @@ const skills = [
   { title: "Visualization & BI Tools", items: ["Power BI", "Tableau", "Plotly", "Matplotlib", "Seaborn", "Streamlit", "Git", "GitHub", "Kaggle API"] }
 ];
 
+/* Tech-stack badge metadata: real brand icon (via Simple Icons CDN) plus a
+   short fallback initials in case a particular icon slug isn't available.
+   Skills without their own product/brand (pure concepts, or techniques)
+   borrow the closest parent tool's logo, noted in comments below. */
+const ICON_BASE = "https://cdn.simpleicons.org";
+const techMeta = {
+  "Python": { slug: "python", fallback: "Py" },
+  "JavaScript": { slug: "javascript", fallback: "JS" },
+  "HTML/CSS": { slug: "html5", fallback: "</>" },
+  "SQL": { slug: "mysql", fallback: "SQL" },              // parent: MySQL (most common RDBMS)
+  "C/C++": { slug: "cplusplus", fallback: "C++" },
+  "Java": { slug: "openjdk", fallback: "Ja" },
+
+  "Scikit-learn": { slug: "scikitlearn", fallback: "skl" },
+  "PyTorch": { slug: "pytorch", fallback: "PT" },
+  "TensorFlow": { slug: "tensorflow", fallback: "TF" },
+  "Keras": { slug: "keras", fallback: "Ks" },
+  "OpenCV": { slug: "opencv", fallback: "CV" },
+  "LangChain": { slug: "langchain", fallback: "LC" },
+  "Hugging Face": { slug: "huggingface", fallback: "🤗" },
+  "Model Evaluation": { slug: "scikitlearn", fallback: "Ev" },   // parent: scikit-learn (metrics module)
+
+  "Pandas": { slug: "pandas", fallback: "Pd" },
+  "NumPy": { slug: "numpy", fallback: "Np" },
+  "Spark": { slug: "apachespark", fallback: "Sp" },
+  "SciPy": { slug: "scipy", fallback: "Sc" },
+  "Time Series Forecasting": { slug: "pandas", fallback: "TS" },   // parent: pandas
+  "EDA": { slug: "jupyter", fallback: "EDA" },                     // parent: Jupyter notebooks
+  "Data Cleaning": { slug: "pandas", fallback: "DC" },             // parent: pandas
+  "Vector DBs & Embeddings": { slug: "huggingface", fallback: "Vec" }, // parent: Hugging Face embeddings
+  "Data Wrangling": { slug: "pandas", fallback: "DW" },            // parent: pandas
+  "Azure Data Lake": { slug: "microsoftazure", fallback: "Az" },
+  "Feature Engineering": { slug: "scikitlearn", fallback: "FE" },  // parent: scikit-learn
+
+  "Power BI": { slug: "powerbi", fallback: "BI" },
+  "Tableau": { slug: "tableau", fallback: "Tb" },
+  "Plotly": { slug: "plotly", fallback: "Pl" },
+  "Matplotlib": { slug: "matplotlib", fallback: "Mpl" },
+  "Seaborn": { slug: "matplotlib", fallback: "Sb" },   // parent: Matplotlib (Seaborn is built on it)
+  "Streamlit": { slug: "streamlit", fallback: "St" },
+  "Git": { slug: "git", fallback: "Git" },
+  "GitHub": { slug: "github", fallback: "Gh" },
+  "Kaggle API": { slug: "kaggle", fallback: "Kg" }
+};
+
 const filterLabels = {
   all: "All",
   "data-cleaning": "Data Cleaning",
@@ -344,7 +389,19 @@ function renderSkills() {
   const wrap = document.getElementById("skills-grid");
   skills.forEach(cat => {
     const div = el("div", "skill-card");
-    div.innerHTML = `<h3>${cat.title}</h3><div class="tag-row">${cat.items.map(i => `<span class="tag">${i}</span>`).join("")}</div>`;
+    const badges = cat.items.map(name => {
+      const meta = techMeta[name] || { slug: "", fallback: name.slice(0, 2) };
+      const iconUrl = meta.slug ? `${ICON_BASE}/${meta.slug}` : "";
+      return `
+        <div class="tech-card" tabindex="0">
+          <span class="tech-badge">
+            ${iconUrl ? `<img src="${iconUrl}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">` : ""}
+            <span class="tech-fallback"${iconUrl ? "" : ' style="display:flex;"'}>${meta.fallback}</span>
+          </span>
+          <span class="tech-label">${name}</span>
+        </div>`;
+    }).join("");
+    div.innerHTML = `<h3>${cat.title}</h3><div class="tech-grid">${badges}</div>`;
     wrap.appendChild(div);
   });
 }
@@ -441,46 +498,82 @@ function typeTerminal() {
     { prompt: "status --current", out: "Open to <strong>PhD positions (Fall 2026)</strong> and <strong>AI / Data Science / ML roles</strong>" }
   ];
   const body = document.getElementById("terminal-body");
+  const terminalEl = document.querySelector(".terminal");
 
-  if (reduceMotion) {
+  function renderStatic() {
     body.innerHTML = lines.map(l => `
       <div class="terminal-line"><span class="prompt">$</span><span>${l.prompt}</span></div>
       <div class="terminal-line out">${l.out}</div>
     `).join("") + `<div class="terminal-line"><span class="prompt">$</span><span class="typed-cursor"></span></div>`;
-    return;
   }
 
-  let li = 0;
-  function typeLine() {
-    if (li >= lines.length) {
-      const finalLine = el("div", "terminal-line");
-      finalLine.innerHTML = `<span class="prompt">$</span><span class="typed-cursor"></span>`;
-      body.appendChild(finalLine);
-      return;
-    }
-    const line = lines[li];
-    const promptDiv = el("div", "terminal-line");
-    const promptSpan = el("span", "prompt", "$");
-    const textSpan = el("span", "", "");
-    promptDiv.appendChild(promptSpan);
-    promptDiv.appendChild(textSpan);
-    body.appendChild(promptDiv);
+  if (reduceMotion) { renderStatic(); return; }
 
-    let ci = 0;
-    const text = line.prompt;
-    const iv = setInterval(() => {
-      textSpan.textContent = text.slice(0, ci + 1);
-      ci++;
-      if (ci >= text.length) {
-        clearInterval(iv);
-        const outDiv = el("div", "terminal-line out", line.out);
-        body.appendChild(outDiv);
-        li++;
-        setTimeout(typeLine, 220);
+  let isPaused = false;
+  let timers = [];
+  const clearTimers = () => { timers.forEach(t => clearTimeout(t)); timers = []; };
+
+  function typeLoop() {
+    body.innerHTML = "";
+    let li = 0;
+
+    function typeLine() {
+      if (isPaused) return;
+      if (li >= lines.length) {
+        const finalLine = el("div", "terminal-line");
+        finalLine.innerHTML = `<span class="prompt">$</span><span class="typed-cursor"></span>`;
+        body.appendChild(finalLine);
+        timers.push(setTimeout(() => { if (!isPaused) typeLoop(); }, 3200));
+        return;
       }
-    }, 32);
+      const line = lines[li];
+      const promptDiv = el("div", "terminal-line");
+      const promptSpan = el("span", "prompt", "$");
+      const textSpan = el("span", "", "");
+      promptDiv.appendChild(promptSpan);
+      promptDiv.appendChild(textSpan);
+      body.appendChild(promptDiv);
+
+      let ci = 0;
+      const text = line.prompt;
+      const iv = setInterval(() => {
+        if (isPaused) { clearInterval(iv); return; }
+        textSpan.textContent = text.slice(0, ci + 1);
+        ci++;
+        if (ci >= text.length) {
+          clearInterval(iv);
+          const outDiv = el("div", "terminal-line out", line.out);
+          body.appendChild(outDiv);
+          li++;
+          timers.push(setTimeout(typeLine, 220));
+        }
+      }, 32);
+    }
+    typeLine();
   }
-  typeLine();
+
+  function pause() {
+    if (isPaused) return;
+    isPaused = true;
+    clearTimers();
+    renderStatic();
+  }
+  function resume() {
+    if (!isPaused) return;
+    isPaused = false;
+    typeLoop();
+  }
+
+  typeLoop();
+
+  if (terminalEl) {
+    terminalEl.addEventListener("mouseenter", pause);
+    terminalEl.addEventListener("mouseleave", resume);
+    terminalEl.addEventListener("touchstart", pause, { passive: true });
+    document.addEventListener("touchstart", e => {
+      if (isPaused && !terminalEl.contains(e.target)) resume();
+    }, { passive: true });
+  }
 }
 
 /* =========================================================
