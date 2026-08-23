@@ -333,13 +333,20 @@ a:focus-visible, button:focus-visible {
   font-size: 0.72rem;
   color: var(--text-faint);
   margin-left: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .terminal-body {
   padding: 20px 22px 26px;
   font-family: var(--font-mono);
   font-size: 0.88rem;
-  min-height: 168px;
+  height: 232px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
+.terminal-body::-webkit-scrollbar { width: 6px; }
+.terminal-body::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
 .terminal-line { display: flex; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
 .terminal-line .prompt { color: var(--syntax-cyan); flex-shrink: 0; }
 .terminal-line .out { color: var(--text-dim); padding-left: 20px; margin-bottom: 14px; }
@@ -421,7 +428,17 @@ a:focus-visible, button:focus-visible {
   background: var(--bg);
   border: 2px solid var(--accent);
 }
-.exp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.exp-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 4px; }
+.org-logo {
+  width: 42px; height: 42px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #f4f1e8;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.22);
+  padding: 5px;
+  flex-shrink: 0;
+}
 .exp-item h3 { font-family: var(--font-display); font-size: 1.12rem; font-weight: 600; color: var(--text); }
 .exp-meta { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-faint); margin-bottom: 12px; }
 .exp-meta span { color: var(--syntax-cyan); }
@@ -628,7 +645,10 @@ a:focus-visible, button:focus-visible {
   padding: 22px 24px;
 }
 .edu-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
-.edu-card .org { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 10px; }
+.edu-card .org { color: var(--text-dim); font-size: 0.92rem; }
+.edu-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.edu-head h3 { margin-bottom: 4px; }
+.edu-head .org-logo { width: 42px; height: 42px; }
 .edu-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint); display: block; margin-bottom: 3px; }
 .edu-meta.highlight { color: var(--accent); }
 
@@ -681,5 +701,5 @@ a:focus-visible, button:focus-visible {
   .cell-inner { grid-template-columns: 1fr; gap: 8px; }
   .cell-marker { padding-top: 0; }
   .hero { padding: 60px 0 50px; }
-  .exp-head { flex-direction: column; gap: 2px; }
+  .exp-head { align-items: flex-start; gap: 10px; }
 }

@@ -13,6 +13,7 @@ const experience = [
   {
     title: "Research Assistant Trainee & Master's Thesis Student",
     org: "University of Helsinki",
+    logo: "assets/logo-helsinki.jpg",
     duration: "Nov 2025 — June 2026",
     meta: "Complex Systems Computation (CoSCo) Group · Generation AI Project",
     bullets: [
@@ -28,6 +29,7 @@ const experience = [
   {
     title: "Teaching Assistant",
     org: "Daffodil International University",
+    logo: "assets/logo-daffodil.jpg",
     duration: "Sep 2020 — Apr 2021",
     meta: "",
     desc: "Assisted in teaching Software Project I (CSE136) and Software Project II (CSE216), providing academic support to students across two semesters. Responsibilities included guiding project phases, clarifying course materials, and evaluating assignments."
@@ -327,12 +329,14 @@ const education = [
   {
     degree: "M.Sc. in Data Science",
     org: "University of Helsinki, Finland",
+    logo: "assets/logo-helsinki.jpg",
     lines: ["Expected Graduation: July 2026", "GPA: 4.32 / 5"],
     highlight: "Awarded prestigious scholarship (2.4% acceptance rate)"
   },
   {
     degree: "B.Sc. in Computer Science and Engineering",
     org: "Daffodil International University, Bangladesh",
+    logo: "assets/logo-daffodil.jpg",
     lines: ["GPA: 3.81 / 4.00", "Graduated: March 2024"]
   }
 ];
@@ -376,9 +380,17 @@ function renderExperience() {
   const wrap = document.getElementById("experience-list");
   experience.forEach(item => {
     const div = el("div", "exp-item");
+    const logo = item.logo
+      ? `<img class="org-logo" src="${item.logo}" alt="${item.org} logo" loading="lazy" onerror="this.style.display='none';">`
+      : "";
     div.innerHTML = `
-      <div class="exp-head"><h3>${item.title}</h3></div>
-      <span class="exp-meta">${item.org}${item.duration ? " · <span>" + item.duration + "</span>" : ""}${item.meta ? " · " + item.meta : ""}</span>
+      <div class="exp-head">
+        ${logo}
+        <div>
+          <h3>${item.title}</h3>
+          <span class="exp-meta">${item.org}${item.duration ? " · <span>" + item.duration + "</span>" : ""}${item.meta ? " · " + item.meta : ""}</span>
+        </div>
+      </div>
       ${item.bullets ? `<ul class="exp-bullets">${item.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : `<p class="exp-desc">${item.desc}</p>`}
     `;
     wrap.appendChild(div);
@@ -477,9 +489,17 @@ function renderEducation() {
   const wrap = document.getElementById("education-grid");
   education.forEach(e => {
     const div = el("div", "edu-card");
+    const logo = e.logo
+      ? `<img class="org-logo" src="${e.logo}" alt="${e.org} logo" loading="lazy" onerror="this.style.display='none';">`
+      : "";
     div.innerHTML = `
-      <h3>${e.degree}</h3>
-      <div class="org">${e.org}</div>
+      <div class="edu-head">
+        ${logo}
+        <div>
+          <h3>${e.degree}</h3>
+          <div class="org">${e.org}</div>
+        </div>
+      </div>
       ${e.lines.map(l => `<span class="edu-meta">${l}</span>`).join("")}
       ${e.highlight ? `<span class="edu-meta highlight">${e.highlight}</span>` : ""}
     `;
