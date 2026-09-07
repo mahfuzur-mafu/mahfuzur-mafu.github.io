@@ -11,6 +11,16 @@ const socialLinks = [
 
 const experience = [
   {
+    title: "Teaching Assistant",
+    org: "University of Helsinki",
+    logo: "assets/logo-helsinki.jpg",
+    duration: "Sep 2026 — Oct 2026 (part-time,contract)",
+    meta: "Data Science Study Skills · Autumn 2026",
+    bullets: [
+      " Supporting students with course assignments, academic writing, and study related tasks."
+    ]
+  },
+  {
     title: "Research Assistant Trainee & Master's Thesis Student",
     org: "University of Helsinki",
     logo: "assets/logo-helsinki.jpg",
