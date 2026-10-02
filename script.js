@@ -11,6 +11,13 @@ const socialLinks = [
 
 const experience = [
   {
+    title: "ML / LLM Engineer",
+    org: "RAIN",
+    logo: "assets/logo-rain.png",
+    duration: "Oct 2026 — Present (full-time)",
+    meta: "Helsinki, Uusimaa, Finland · Remote"
+  },
+  {
     title: "Teaching Assistant",
     org: "University of Helsinki",
     logo: "assets/logo-helsinki.jpg",
@@ -401,7 +408,7 @@ function renderExperience() {
           <span class="exp-meta">${item.org}${item.duration ? " · <span>" + item.duration + "</span>" : ""}${item.meta ? " · " + item.meta : ""}</span>
         </div>
       </div>
-      ${item.bullets ? `<ul class="exp-bullets">${item.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : `<p class="exp-desc">${item.desc}</p>`}
+      ${item.bullets ? `<ul class="exp-bullets">${item.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : item.desc ? `<p class="exp-desc">${item.desc}</p>` : ""}
     `;
     wrap.appendChild(div);
   });
