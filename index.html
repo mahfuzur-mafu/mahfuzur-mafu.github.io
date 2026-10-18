@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Mahfuzur Rahman — AI/ML/DS Researcher & Engineer</title>
+<meta name="description" content="Md Mahfuzur Rahman — M.Sc. Data Science, University of Helsinki. Research assistant working on LLM behavior, retrieval, and attribution. Applying to PhD programs and AI/DS/ML roles.">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="cursor-glow" aria-hidden="true"></div>
+
+<!-- ============ Top nav ============ -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#top" class="logo"><span class="caret">&gt;</span> mahfuzur<span class="blink-cursor">_</span></a>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+        <a href="#about"><span class="idx">00</span> about</a>
+        <a href="#experience"><span class="idx">01</span> experience</a>
+        <a href="#skills"><span class="idx">02</span> skills</a>
+        <a href="#projects"><span class="idx">03</span> projects</a>
+        <a href="#hackathons"><span class="idx">04</span> hackathons</a>
+        <a href="#publications"><span class="idx">05</span> publications</a>
+        <a href="#certifications"><span class="idx">06</span> certifications</a>
+        <a href="#education"><span class="idx">07</span> education</a>
+        <a href="#contact"><span class="idx">08</span> contact</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode"></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Helsinki, Finland</div>
+      <h1>Md Mahfuzur Rahman</h1>
+      <p class="hero-role">Building transparent and trustworthy AI systems using <strong>Large Language Models</strong>, <strong>Embedding-Based Retrieval</strong>, <strong>Semantic Search</strong>, <strong>Vector Databases</strong>, and <strong>Explainable AI</strong>. </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+      <div class="social-row" id="social-links"></div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+        <span class="terminal-title">~/mahfuzur — zsh</span>
+      </div>
+      <div class="terminal-body" id="terminal-body"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ About ============ -->
+<section class="cell" id="about">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[0]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># about_me()</span>
+      <h2 class="cell-title">About</h2>
+      <p class="about-text">
+        I am a <strong>graduate student</strong> with a strong interest in <strong>Large Language Models (LLMs)</strong>, <strong>Embedding-Based Retrieval</strong>, <strong>Semantic Search</strong>, <strong>Vector Databases</strong>, and <strong>Explainable AI (XAI)</strong>. My Master's thesis at the University of Helsinki focused on explaining language model outputs through retrieval from training data using <strong>Transformer Embeddings</strong> and <strong>Vector Similarity Search</strong>. I enjoy building end-to-end <strong>Natural Language Processing (NLP)</strong> systems that combine machine learning research with practical engineering, and I am particularly interested in developing transparent, interpretable, and trustworthy AI systems.
+      </p>
+  </div>
+</section>
+
+<!-- ============ Experience ============ -->
+<section class="cell" id="experience">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[1]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># experience.timeline()</span>
+      <h2 class="cell-title">Experience</h2>
+      <div class="timeline" id="experience-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Skills ============ -->
+<section class="cell" id="skills">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[2]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># skills.json</span>
+      <h2 class="cell-title">Skills &amp; Expertise</h2>
+      <div class="skills-grid" id="skills-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Projects ============ -->
+<section class="cell" id="projects">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[3]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># projects.filter(category)</span>
+      <h2 class="cell-title">Featured Projects</h2>
+      <div class="filter-row" id="filter-row"></div>
+      <div class="project-grid" id="project-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Hackathons ============ -->
+<section class="cell" id="hackathons">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[4]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># hackathons.log()</span>
+      <h2 class="cell-title">Hackathons</h2>
+      <div class="stack-list" id="hackathon-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Publications ============ -->
+<section class="cell" id="publications">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[5]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># publications.cite()</span>
+      <h2 class="cell-title">Publications</h2>
+      <div class="stack-list" id="publication-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Certifications ============ -->
+<section class="cell" id="certifications">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[6]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># certifications.verify()</span>
+      <h2 class="cell-title">Certifications</h2>
+      <div class="cert-grid" id="certification-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Education ============ -->
+<section class="cell" id="education">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[7]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># education.history()</span>
+      <h2 class="cell-title">Education</h2>
+      <div class="edu-grid" id="education-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="cell footer-cell" id="contact">
+  <div class="container cell-inner">
+    <div class="cell-marker reveal">In&nbsp;[8]:</div>
+    <div class="reveal">
+      <span class="cell-comment"># contact.me()</span>
+      <div class="contact-box">
+        <p class="lead">Let's talk research, roles, or a good dataset.</p>
+        <p class="sub">Open to AI, Machine Learning, Data Science, and Research opportunities.</p>
+        <div class="hero-cta">
+          <a href="mailto:mahfuzurmafu@gmail.com" class="btn btn-primary">Email me</a>
+          <a href="https://www.linkedin.com/in/mahfuzurmafu/" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="caret">$</span> echo "© 2026 Md Mahfuzur Rahman — All rights reserved."4
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
